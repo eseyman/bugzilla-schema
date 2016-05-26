@@ -1,0 +1,25 @@
+#!/usr/bin/perl
+
+use feature qw/say/;
+use lib "$ENV{HOME}/projets/bugzilla-schema/lib";
+use strict;
+use warnings;
+
+use DBIx::Class::Schema::Diff;
+
+sub version2schema { return $_[0] =~ s/\./_/rg; }
+
+# let's grab the first version
+my $old_version = shift @ARGV;
+
+# let's grab the second version
+my $new_version = shift @ARGV;
+
+# diff the old version and the new
+my $D = DBIx::Class::Schema::Diff->new(
+    old_schema => 'Schema::Bugzilla::' . version2schema($old_version),
+    new_schema => 'Schema::Bugzilla::' . version2schema($new_version)
+);
+
+if ($D->diff) { say "The two schemas are different"; }
+else { say "The two schemas are identical"; }
