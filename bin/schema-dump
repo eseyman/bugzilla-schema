@@ -1,0 +1,5 @@
+#!/bin/sh
+
+rm -rf var/*
+dbicx-autodoc --lib --schema=Schema::Bugzilla::$1 --include-path=views --output=var
+# rm var/Schema-Bugzilla-*
