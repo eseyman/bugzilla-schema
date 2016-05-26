@@ -1,0 +1,57 @@
+#!/usr/bin/perl
+
+use feature qw/say/;
+use lib "$ENV{HOME}/projets/bugzilla-schema/lib";
+use strict;
+use warnings;
+
+use Data::Dumper;
+use DBIx::Class::Schema::Diff;
+
+sub schema2version {
+    return $_[0] =~ s/_/./rg;
+}
+
+sub version2schema {
+    return $_[0] =~ s/\./_/rg;
+}
+
+open(VERSIONS, '<', 'etc/checklist');
+my @versions = <VERSIONS>;
+close(VERSIONS);
+chomp @versions;
+@versions = grep { -d "lib/Schema/Bugzilla/" . version2schema $_ } @versions;
+
+my %version_schema_map;
+
+# let's grab the first version
+my $old_version = shift @versions;
+
+# This is the first version so it's also the first schema version
+$version_schema_map{$old_version} = $old_version;
+
+while(@versions) {
+
+    # let's grab the second version
+    my $new_version = shift @versions;
+
+    # diff the old version and the new
+    my $D = DBIx::Class::Schema::Diff->new(
+        old_schema => 'Schema::Bugzilla::' . version2schema($old_version),
+        new_schema => 'Schema::Bugzilla::' . version2schema($new_version)
+    );
+
+    if ($D->diff) {
+        $version_schema_map{$new_version} = $new_version;
+    } else {
+        $version_schema_map{$new_version} = $version_schema_map{$old_version};
+    }
+
+    # The new version is now the old version
+    $old_version = $new_version;
+}
+
+# foreach my $i (sort keys %version_schema_map) {
+foreach my $i (sort keys %version_schema_map) {
+    say '{ version => "', $i, '", schema => "', $version_schema_map{$i}, '", },';
+}
