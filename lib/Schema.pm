@@ -50,6 +50,7 @@ sub run {
             $template->process('index.tt', $vars, \$content);
             return [ '200', [ 'Content-Type' => 'text/html' ], [ $content ], ];
         }
+        return [ '404', [ 'Content-Type' => 'text/html' ], ["404 File Not Found"], ];
     };
 
 };
