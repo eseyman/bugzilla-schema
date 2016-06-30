@@ -1,0 +1,9 @@
+
+projects() should be a list of urls and function calls:
+    'bugzilla'   => Schema::Bugzilla::metadata()
+    'centreon'   => Schema::Centreon::metadata()
+    'racktables' => Schema::RackTables::metadata()
+
+use Software::License to display licenses
+
+add notion of last stable version
