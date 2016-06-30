@@ -1,0 +1,99 @@
+[% INCLUDE html_header.tt2 %]
+
+<center>
+<p>Quick links to table definitions:</p>
+
+<table>
+<tbody>
+[% FOR source IN sources %]
+[% UNLESS loop.index mod 4 %]
+[% '</tr>' UNLESS loop.first %]
+<tr>
+[% END %]
+<td><a href="#table-[% source.table %]">[% source.table%]</a></td>
+[% END %]
+</tr></tbody></table>
+</center>
+
+<h2>1. Introduction</h2>
+<p>This document describes the Bugzilla database schema.</p>
+<p>This document is generated automatically by a Perl script which constructs and colors the schema tables from a DBIx::Class::Schema object.
+<p>The purpose of this document is to act as a reference for developers of Bugzilla and of code which interacts with Bugzilla
+<p>The intended readership is Bugzilla developers and administrators.
+<p>This document is not confidential.
+<p>Please send any comments and/or problem reports to <a href="emmanuel+bzschema&#64;seyman.fr">emmanuel+bzschema&#64;seyman.fr</a>.
+
+<h2>2. Bugzilla overview</h2>
+<p>Bugzilla is a defect tracking system, written in Perl with a CGI web GUI. By default it uses MySQL to store its tables. PostgreSQL and SQLite are also supported.
+
+<h2>3. The schema</h2>
+
+[% FOR source IN sources %]
+    <h3>
+        <a id="table-[% source.table %]" name="table-[% source.table %]">
+        The "[% source.table %]" table</a>
+    </h3>
+
+    [% INCLUDE columns_table.tt2 %]
+    [% IF source.unique_constraints.size %]
+        [% INCLUDE unique_constraints_table.tt2 %]
+    [% END %]
+    [% IF source.relationships.size %]
+        <br />
+        [% INCLUDE relationship_table.tt2 %]
+    [% END %]
+
+[% END %]
+
+<h2>4. Bugzilla History</h2>
+<h3>Bugzilla releases</h3>
+
+<p>A table giving the dates of all the Bugzilla releases since 2.0. will soon be generated.
+
+
+<h2><a id="section-5" name="section-5">5. Example queries</a></h2>
+
+<p>To select bug number <em>n</em>:</p>
+
+<blockquote><code>
+select * from bugs where bug_id = <em>n</em>
+</code></blockquote>
+
+<p>To get a complete list of user ids and email addresses:</p>
+
+<blockquote><code>
+select userid, login_name from profiles
+</code></blockquote>
+
+<p>To get the email address of user <em>n</em>:</p>
+
+<blockquote><code>
+select login_name from profiles where userid = <em>n</em>
+</code></blockquote>
+
+<p>To get the set of cc addresses of bug <em>n</em>:</p>
+
+<blockquote><code>
+select login_name from cc, profiles
+ where cc.bug_id = <em>n</em>
+   and profiles.userid = cc.who
+</code></blockquote>
+
+<p>To select the long descriptions
+of bug <em>n</em>, together with the name and email address of the
+commenters:</p>
+
+<blockquote><code>
+select profiles.login_name, profiles.realname,
+       longdescs.bug_when, longdescs.thetext
+  from longdescs, profiles
+ where profiles.userid = longdescs.who
+   and longdescs.bug_id = <em>n</em>
+ order by longdescs.bug_when
+</code></blockquote><p>To find out the groups of user <em>n</em>:</p><p></p>
+
+<blockquote><code>
+select group_id from user_group_map where userid = <em>n</em> and isbless=0
+</code></blockquote>
+
+[% INCLUDE html_footer.tt2 %]

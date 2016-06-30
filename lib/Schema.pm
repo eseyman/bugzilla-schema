@@ -75,6 +75,17 @@ sub run {
             }
         }
 
+        if ($request->path_info =~ m{^/([^/]+)/schema/*$}) {
+
+            my %v2r = map { $_->{version} => $_->{schema} } @Schema::Bugzilla::releases;
+            my $dbicmodule = "Schema::Bugzilla::" . $v2r{$request->param('version')};
+            my $autodoc = DBICx::AutoDoc->new('schema' => $dbicmodule, 'include_path' => 'views', 'output' => 'var');
+            $autodoc->fill_all_templates('');
+            # autodoc creates a file so we need to read it
+            my $autodoc_file = 'var/' . $dbicmodule . '-1.html';
+            $autodoc_file =~ s/\:\:/-/g;;
+            return [ '200', [ 'Content-Type' => 'text/html' ], [ read_file($autodoc_file) ], ];
+        }
         return [ '404', [ 'Content-Type' => 'text/html' ], ["404 File Not Found"], ];
     };
 

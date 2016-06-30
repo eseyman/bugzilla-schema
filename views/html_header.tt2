@@ -1,0 +1,21 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <!-- title>[% schema_class %] version [% schema_version %]</title -->
+    <title>Bugzilla Schema</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <style type="text/css">[% PROCESS stylesheet.css %]</style>
+    <!-- link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css">
+    <script type="text/javascript" language="javascript" src="//code.jquery.com/jquery-3.0.0.js"></script>
+    <script type="text/javascript" language="javascript" src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" language="javascript" src="//cdn.datatables.net/1.10.12/js/dataTables.jqueryui.min.js"></script>
+    <script type="text/javascript" class="init">
+        $(document).ready(function() {
+	    $('table.display').DataTable({ paging: false, "info": false, searching: false });
+        } );
+    </script -->
+</head>
+<body>
+<h1 align="center"><a name="index">Bugzilla Schema</a></h1>
+[% IF include_tabs %][% INCLUDE html_tabs.tt2 %][% END %]

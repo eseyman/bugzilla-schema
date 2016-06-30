@@ -1,0 +1,10 @@
+<table border="1" cellspacing="0" cellpadding="5">
+    <tr>
+    <th>Name</th>
+    <th>Type</th>
+    <th>Info</th>
+    </tr>
+    [% FOR col IN source.columns %]
+        [% INCLUDE columns_row.tt2 %]
+    [% END %]
+</table>

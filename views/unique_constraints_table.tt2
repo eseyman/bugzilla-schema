@@ -1,0 +1,18 @@
+<p name="[% source.moniker %]-unique_constraints">Unique Constraints</p>
+
+<table id="[% source.moniker %]" class="display">
+    <thead>
+    <tr><th>Name</th><th>Columns</th></tr>
+    </thead>
+    <tbody>
+    [% FOREACH source.unique_constraints %]
+        [% FILTER collapse %]
+            <tr>
+            <td>[% name %]</td>
+            <td>[% columns.join( ', ' ) %]</td>
+            </tr>
+            [% INCLUDE table_comment.tt2 %]
+        [% END %]
+    [% END %]
+    </tbody>
+</table>
