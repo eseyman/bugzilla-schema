@@ -50,6 +50,31 @@ sub run {
             $template->process('index.tt', $vars, \$content);
             return [ '200', [ 'Content-Type' => 'text/html' ], [ $content ], ];
         }
+
+        if ($request->path_info =~ m{^/([^/]+)/*$}) {
+
+            my $project = lc($1);
+
+            my $module = 'Schema::Bugzilla';
+            eval("use $module;");
+
+            if (exists($projects->{$project})) {
+                my $content;
+                my @versions = map { $_->{version} } @Schema::Bugzilla::releases;
+
+                my $template = Template->new($config);
+                my $vars = {
+                    project => $projects->{$project},
+                    versions  => \@versions,
+                };
+
+                $template->process('form.tt', $vars, \$content);
+                return [ '200', [ 'Content-Type' => 'text/html' ], [ $content ], ];
+            } else {
+                return [ '404', [ 'Content-Type' => 'text/html' ], ['Epic Fail'], ];
+            }
+        }
+
         return [ '404', [ 'Content-Type' => 'text/html' ], ["404 File Not Found"], ];
     };
 
