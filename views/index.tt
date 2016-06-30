@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Schema</title>
+  <!-- link rel="stylesheet" href="style.css" -->
+  <!-- script src="script.js"></script -->
+</head>
+<body>
+    <h1>Schema</h1>
+    <p>Pick a project:</p>
+    <ul>
+      [% FOREACH project IN projects %]
+      <li><a href="/[% project.key %]"><img src="[% project.value.logo %]" alt="[% project.value.name %], [% project.value.summary %]" /></a>
+      [% END %]
+    </ul>
+</body>
+</html>
