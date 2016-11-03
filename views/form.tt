@@ -17,9 +17,9 @@
 <form action="/bugzilla/schema" method="get">
 <input name="action" value="single" type="hidden" />
 <fieldset><legend>Schema for a single version</legend>
-<select name="version">
+<select id="version" name="version">
 [% FOR version IN versions %]
-<option value="[% version %]">[% version %]</option>
+<option value="[% version %]"[% ' selected' IF version == current_version %]>[% version %]</option>
 [% END %]
 </select>
 <input name="view" value="View schema" type="submit" />

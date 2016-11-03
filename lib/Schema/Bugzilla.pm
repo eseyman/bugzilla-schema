@@ -22,6 +22,8 @@ sub metadata() {
     }
 }
 
+our $current = '5.0.3';
+
 our @releases = (
     { version => "2.0", schema => "2_0", },
     { version => "2.2", schema => "2_2", },

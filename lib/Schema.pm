@@ -61,11 +61,13 @@ sub run {
             if (exists($projects->{$project})) {
                 my $content;
                 my @versions = map { $_->{version} } @Schema::Bugzilla::releases;
+                my $current_version = $Schema::Bugzilla::current;
 
                 my $template = Template->new($config);
                 my $vars = {
                     project => $projects->{$project},
                     versions  => \@versions,
+                    current_version => $current_version,
                 };
 
                 $template->process('form.tt', $vars, \$content);
