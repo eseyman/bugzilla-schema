@@ -60,8 +60,8 @@ sub run {
 
             if (exists($projects->{$project})) {
                 my $content;
-                my @versions = map { $_->{version} } @Schema::Bugzilla::releases;
-                my $current_version = $Schema::Bugzilla::current;
+                my @versions = $module->list_versions();
+                my $current_version = $module->current_version();
 
                 my $template = Template->new($config);
                 my $vars = {

@@ -22,7 +22,9 @@ sub metadata() {
     }
 }
 
-our $current = '5.0.3';
+sub current_version() {
+    return '5.0.3';
+}
 
 our @releases = (
     { version => "2.0", schema => "2_0", },
@@ -242,5 +244,9 @@ our @releases = (
     { version => "5.0.3", schema => "5_0rc1", },
     { version => "5.1.1", schema => "5_1_1", },
 );
+
+sub list_versions() {
+    map { $_->{version} } @releases;
+}
 
 1
