@@ -4,7 +4,7 @@ use strict;
 use warnings;
 
 use DBICx::AutoDoc;
-use File::Slurp;
+use File::Slurper 'read_text';
 use Template;
 use Plack::Request;
 
@@ -86,7 +86,7 @@ sub run {
             # autodoc creates a file so we need to read it
             my $autodoc_file = 'var/' . $dbicmodule . '-1.html';
             $autodoc_file =~ s/\:\:/-/g;;
-            return [ '200', [ 'Content-Type' => 'text/html' ], [ read_file($autodoc_file) ], ];
+            return [ '200', [ 'Content-Type' => 'text/html' ], [ read_text($autodoc_file) ], ];
         }
         return [ '404', [ 'Content-Type' => 'text/html' ], ["404 File Not Found"], ];
     };
