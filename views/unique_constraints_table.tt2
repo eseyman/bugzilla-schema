@@ -1,4 +1,4 @@
-<p name="[% source.moniker %]-unique_constraints">Unique Constraints</p>
+<p>Unique Constraints</p>
 
 <table id="[% source.moniker %]" class="display">
     <thead>

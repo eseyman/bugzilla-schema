@@ -8,11 +8,11 @@
     [% END %]
     [% NEXT UNLESS relationships.size %]
     [% UNLESS did_header %]
-        <p name="[% source.moniker %]-relationships">Relationships</p>
+        <p>Relationships</p>
         [% SET did_header = 1 %]
     [% END %]
 
-    <table name="[% source.moniker %]-relationships-[% accessor_type %]" class="display">
+    <table class="display">
     <caption>[% accessor_type %]</caption>
     <thead>
     <tr>
@@ -51,4 +51,4 @@
     </tbody>
     </table>
 [% END %]
-<br clear="both" />
+<br />

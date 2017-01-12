@@ -1,20 +1,4 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Schema</title>
-
-  <!-- Latest compiled and minified CSS -->
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-  <!-- jQuery library -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
-  <!-- Latest compiled JavaScript -->
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-
-</head>
-<body>
+[% INCLUDE html_header.tt2 %]
 <div class="container">
     <h1>Schema</h1>
     <p>Pick a project:</p>
@@ -24,5 +8,4 @@
       [% END %]
     </ul>
 </div>
-</body>
-</html>
+[% INCLUDE html_footer.tt2 %]

@@ -1,6 +1,5 @@
 [% INCLUDE html_header.tt2 %]
 
-<center>
 <p>Quick links to table definitions:</p>
 
 [% remainder = 4 - sources.size mod 4%]
@@ -21,7 +20,6 @@
 <td>&nbsp;</td>
 [% END %]
 </tr></tbody></table>
-</center>
 
 <h2>1. Introduction</h2>
 <p>This document describes the Bugzilla database schema.</p>
@@ -38,8 +36,7 @@
 
 [% FOR source IN sources %]
     <h3>
-        <a id="table-[% source.table %]" name="table-[% source.table %]">
-        The "[% source.table %]" table</a>
+        The "[% source.table %]" table
     </h3>
 
     [% INCLUDE columns_table.tt2 %]
@@ -59,7 +56,7 @@
 <p>A table giving the dates of all the Bugzilla releases since 2.0. will soon be generated.
 
 
-<h2><a id="section-5" name="section-5">5. Example queries</a></h2>
+<h2><a id="section-5">5. Example queries</a></h2>
 
 <p>To select bug number <em>n</em>:</p>
 

@@ -1,15 +1,5 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>[% project.name %] Schema Documentation</title>
-  <!-- link rel="stylesheet" href="style.css">
-  <script src="script.js"></script -->
-</head>
-<body>
-<div>
-<h1>[% project.name %] Schema Documentation</h1>
-</div>
+[% INCLUDE html_header.tt2 %]
+<h1>Bugzilla Schema Documentation</h1>
 <div>
 <p>This service generates documentation for the database schema of <a href="[% project.url %]">[% project.name %]</a>, [% project.summary %]. It can produce documentation for the schema of any historical version or for the schema changes between any two versions.</p>
 <table>
@@ -52,5 +42,4 @@
 <p><small>This program is based upon one written by staff at <a href="http://www.ravenbrook.com/">Ravenbrook Limited</a>, as part of the <a href="http://www.ravenbrook.com/project/p4dti">P4DTI</a> project under contract to <a href="http://www.perforce.com">Perforce, Inc.</a> The source code and data for this service are open source and available at <a href="http://github.com/Ravenbrook/bugzilla-schema">GitHub</a>.</small></p>
 <p><small><strong>This document is provided by the copyright holders and contributors "as is" and any express or implied warranties, including, but not limited to, the implied warranties of merchantability and fitness for a particular purpose are disclaimed. In no event shall the copyright holders and contributors be liable for any direct, indirect, incidental, special, exemplary, or consequential damages (including, but not limited to, procurement of substitute goods or services; loss of use, data, or profits; or business interruption) however caused and on any theory of liability, whether in contract, strict liability, or tort (including negligence or otherwise) arising in any way out of the use of this document, even if advised of the possibility of such damage. </strong></small></p>
 
-</body>
-</html>
+[% INCLUDE html_footer.tt2 %]
