@@ -3,6 +3,11 @@
 <center>
 <p>Quick links to table definitions:</p>
 
+[% remainder = 4 - sources.size mod 4%]
+[% IF remainder == 4 %]
+[% remainder = 0 %]
+[% END %]
+
 <table>
 <tbody>
 [% FOR source IN sources %]
@@ -11,6 +16,9 @@
 <tr>
 [% END %]
 <td><a href="#table-[% source.table %]">[% source.table%]</a></td>
+[% END %]
+[% FOR nop IN [1 .. remainder] %]
+<td>&nbsp;</td>
 [% END %]
 </tr></tbody></table>
 </center>
