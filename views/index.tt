@@ -4,7 +4,7 @@
     <p>Pick a project:</p>
     <ul>
       [% FOREACH project IN projects %]
-      <li><a href="/[% project.key %]"><img src="[% project.value.logo %]" alt="[% project.value.name %], [% project.value.summary %]" /></a>
+      <li><a href="/[% project.key %]">[% project.value.name %], [% project.value.summary %]</a>
       [% END %]
     </ul>
 </div>
