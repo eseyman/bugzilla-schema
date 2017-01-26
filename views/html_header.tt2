@@ -5,16 +5,23 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Schema">
-    <style type="text/css">[% PROCESS stylesheet.css %]</style>
-    <!-- link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css">
-    <script type="text/javascript" language="javascript" src="//code.jquery.com/jquery-3.0.0.js"></script>
-    <script type="text/javascript" language="javascript" src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" language="javascript" src="//cdn.datatables.net/1.10.12/js/dataTables.jqueryui.min.js"></script>
+    <script type="text/javascript" src="//code.jquery.com/jquery-2.2.4.js"></script>
+    <script type="text/javascript" src="//cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="//cdn.datatables.net/1.10.13/js/dataTables.jqueryui.min.js"></script>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="http://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="http://cdn.datatables.net/1.10.13/js/dataTables.jqueryui.min.js"></script>
     <script type="text/javascript" class="init">
         $(document).ready(function() {
 	    $('table.display').DataTable({ paging: false, "info": false, searching: false });
         } );
-    </script -->
+    </script>
 </head>
 <body>
 [% IF include_tabs %][% INCLUDE html_tabs.tt2 %][% END %]
