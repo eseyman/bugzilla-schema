@@ -12,7 +12,7 @@
         [% SET did_header = 1 %]
     [% END %]
 
-    <table class="display">
+    <table class="table table-bordered table-striped">
     <caption>[% accessor_type %]</caption>
     <thead>
     <tr>

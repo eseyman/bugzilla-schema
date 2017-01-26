@@ -1,4 +1,4 @@
-<table>
+<table class="table table-bordered table-striped">
     <tr>
     <th>Name</th>
     <th>Type</th>
