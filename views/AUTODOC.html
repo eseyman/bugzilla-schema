@@ -1,25 +1,33 @@
 [% INCLUDE html_header.tt2 %]
 
-<p>Quick links to table definitions:</p>
+<h1 class="text-center">Bugzilla Schema</h1>
+
 
 [% remainder = 4 - sources.size mod 4%]
 [% IF remainder == 4 %]
 [% remainder = 0 %]
 [% END %]
 
-<table>
-<tbody>
+<div class="container">
+<p class="text-center">Quick links to table definitions:</p>
+<div class="row">
 [% FOR source IN sources %]
 [% UNLESS loop.index mod 4 %]
-[% '</tr>' UNLESS loop.first %]
-<tr>
+[% '</div>' UNLESS loop.first %]
+<div class="row">
+[% IF loop.index mod 4 == 0 %]
+<div class="col-lg-2">&nbsp;</div>
 [% END %]
-<td><a href="#table-[% source.table %]">[% source.table%]</a></td>
+[% END %]
+<div class="col-lg-2"><a href="#[% source.table %]">[% source.table%]</a></div>
+[% IF loop.index mod 4 == 3 %]
+<div class="col-lg-2">&nbsp;</div>
+[% END %]
 [% END %]
 [% FOR nop IN [1 .. remainder] %]
-<td>&nbsp;</td>
+<div class="col-lg-2">&nbsp;</div>
 [% END %]
-</tr></tbody></table>
+</div></div></div>
 
 <h2>1. Introduction</h2>
 <p>This document describes the Bugzilla database schema.</p>
