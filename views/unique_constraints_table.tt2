@@ -1,6 +1,6 @@
 <p>Unique Constraints</p>
 
-<table id="[% source.moniker %]" class="table table-bordered table-striped">
+<table class="table table-bordered table-striped">
     <thead>
     <tr><th>Name</th><th>Columns</th></tr>
     </thead>
