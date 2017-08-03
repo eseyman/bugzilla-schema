@@ -22,10 +22,6 @@ sub metadata() {
     }
 }
 
-sub current_version() {
-    return '5.0.3';
-}
-
 our @releases = (
     { version => "2.0", schema => "2_0", },
     { version => "2.2", schema => "2_2", },
@@ -247,6 +243,17 @@ our @releases = (
 
 sub list_versions() {
     map { $_->{version} } @releases;
+}
+
+sub current_version() {
+    foreach (reverse(list_versions())) {
+        next if m/rc\d$/;
+
+        my $major; my $minor;
+        ($major, $minor) = split /\./;
+        return $_ unless $minor % 2;
+    }
+    return undef;
 }
 
 1
