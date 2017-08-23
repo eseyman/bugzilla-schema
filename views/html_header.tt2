@@ -11,8 +11,8 @@
 
     <!-- Latest compiled JavaScript -->
     <script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="//cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" src="//cdn.datatables.net/1.10.13/js/dataTables.jqueryui.min.js"></script>
+    <script type="text/javascript" src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="//cdn.datatables.net/1.10.15/js/dataTables.jqueryui.min.js"></script>
     <script type="text/javascript" class="init">
         $(document).ready(function() {
 	    $('table.display').DataTable({ paging: false, "info": false, searching: false });
