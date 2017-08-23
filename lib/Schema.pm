@@ -1,10 +1,12 @@
 package Schema;
 
 use strict;
+no strict 'refs';
 use warnings;
 
 use DBICx::AutoDoc;
 use File::Slurper 'read_text';
+use Module::Find;
 use Template;
 use Plack::Request;
 
@@ -12,19 +14,20 @@ our $VERSION = '0.90';
 
 =head1 NAME
 
-Schema - A tool to generate documentation of the differences between Bugzilla schema versions
+Schema - A tool to generate documentation of the differences between schema versions
 
 =cut
 
 sub projects {
 
-    require Schema::Bugzilla;
-    # require Schema::Racktables;
+    my %metadata;
+    my @found = usesub Schema;
 
-    return {
-        bugzilla        => Schema::Bugzilla::metadata(),
-        # racktables      => Schema::Racktables::metadata(),
+    foreach (@found) {
+        my $module  = (split /\:\:/)[1];
+        $metadata{ lc($module) } = eval "$_" . "::metadata()";
     }
+    return \%metadata;
 }
 
 sub run {
@@ -55,7 +58,7 @@ sub run {
 
             my $project = lc($1);
 
-            my $module = 'Schema::Bugzilla';
+            my $module = 'Schema::' . ucfirst(lc($1));
             eval("use $module;");
 
             if (exists($projects->{$project})) {
@@ -79,8 +82,10 @@ sub run {
 
         if ($request->path_info =~ m{^/([^/]+)/schema/*$}) {
 
-            my %v2r = map { $_->{version} => $_->{schema} } @Schema::Bugzilla::releases;
-            my $dbicmodule = "Schema::Bugzilla::" . $v2r{$request->param('version')};
+            my $module = 'Schema::' . ucfirst(lc($1));
+
+            my %v2r = map { $_->{version} => $_->{schema} } @{ $module . '::releases' };
+            my $dbicmodule = $module . '::' . $v2r{$request->param('version')};
             my $autodoc = DBICx::AutoDoc->new('schema' => $dbicmodule, 'include_path' => 'views', 'output' => 'var');
             $autodoc->fill_all_templates('');
             # autodoc creates a file so we need to read it
