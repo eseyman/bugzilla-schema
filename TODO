@@ -1,5 +1,4 @@
 * abstract out Bugzilla from the templates
-* tidy up routing
 * document including other applications
 * add release dates
 * add query action

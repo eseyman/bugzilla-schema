@@ -30,6 +30,10 @@ sub projects {
     return \%metadata;
 }
 
+sub routes {
+    return my @elements = grep {!/^$/} split '/', shift;
+}
+
 sub run {
 
     my $app = sub {
@@ -41,9 +45,12 @@ sub run {
             INTERPOLATE  => 1,
             POST_CHOMP   => 1,
         };
-        my $projects = projects();
 
-        if ($request->path_info eq '/') {
+        my $projects = projects();
+        my @routes = routes($request->path_info);
+
+        # if the routing array is empty, serve the index page
+        if (scalar @routes eq 0) {
             my $template = Template->new($config);
 
             my $vars = {};
@@ -54,11 +61,13 @@ sub run {
             return [ '200', [ 'Content-Type' => 'text/html' ], [ $content ], ];
         }
 
-        if ($request->path_info =~ m{^/([^/]+)/*$}) {
+        # if the routing array contains one element, it should be a project
+        # and we should serve out that project's main page
+        if (scalar @routes eq 1) {
 
-            my $project = lc($1);
+            my $project = lc($routes[0]);
 
-            my $module = 'Schema::' . ucfirst(lc($1));
+            my $module = 'Schema::' . ucfirst(lc($routes[0]));
             eval("use $module;");
 
             if (exists($projects->{$project})) {
@@ -80,9 +89,11 @@ sub run {
             }
         }
 
-        if ($request->path_info =~ m{^/([^/]+)/schema/*$}) {
+        # if the routing array contains two elements, the first one should
+        # be a project and the second an action.
+        if (scalar @routes eq 2) {
 
-            my $module = 'Schema::' . ucfirst(lc($1));
+            my $module = 'Schema::' . ucfirst(lc($routes[0]));
 
             my %v2r = map { $_->{version} => $_->{schema} } @{ $module . '::releases' };
             my $dbicmodule = $module . '::' . $v2r{$request->param('version')};
@@ -93,6 +104,8 @@ sub run {
             $autodoc_file =~ s/\:\:/-/g;;
             return [ '200', [ 'Content-Type' => 'text/html' ], [ read_text($autodoc_file) ], ];
         }
+
+        # in all other cases, return a custom 404 page
         return [ '404', [ 'Content-Type' => 'text/html' ], ["404 File Not Found"], ];
     };
 
