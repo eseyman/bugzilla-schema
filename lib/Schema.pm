@@ -41,7 +41,7 @@ sub run {
         my $request = Plack::Request->new($env);
 
         my $config = {
-            INCLUDE_PATH => 'views',
+            INCLUDE_PATH => 'views:var',
             INTERPOLATE  => 1,
             POST_CHOMP   => 1,
         };
@@ -95,14 +95,25 @@ sub run {
 
             my $module = 'Schema::' . ucfirst(lc($routes[0]));
 
+            # Let's get DBICx::AutoDoc to do its magic
             my %v2r = map { $_->{version} => $_->{schema} } @{ $module . '::releases' };
             my $dbicmodule = $module . '::' . $v2r{$request->param('version')};
             my $autodoc = DBICx::AutoDoc->new('schema' => $dbicmodule, 'include_path' => 'views', 'output' => 'var');
             $autodoc->fill_all_templates('');
             # autodoc creates a file so we need to read it
-            my $autodoc_file = 'var/' . $dbicmodule . '-1.html';
+            my $autodoc_file = $dbicmodule . '-1.html';
             $autodoc_file =~ s/\:\:/-/g;;
-            return [ '200', [ 'Content-Type' => 'text/html' ], [ read_text($autodoc_file) ], ];
+
+            # Once we have that file, we can run it through TT
+            my $template = Template->new($config);
+            my $projects = projects();
+            my $content;
+            my $vars = {
+                project => $projects->{lc($routes[0])},
+            };
+
+            $template->process($autodoc_file, $vars, \$content) || die $template->error(), "\n";
+            return [ '200', [ 'Content-Type' => 'text/html' ], [ $content ], ];
         }
 
         # in all other cases, return a custom 404 page
