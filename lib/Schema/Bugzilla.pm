@@ -17,7 +17,7 @@ sub metadata() {
         name    => 'Bugzilla',
         url     => 'http://www.bugzilla.org/',
         summary => 'a web-based general-purpose bugtracker and testing tool',
-        licence => 'MPL',
+        license => 'MPL',
         logo    => '/static/images/bugzilla.gif'
     }
 }
