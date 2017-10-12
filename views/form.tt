@@ -1,16 +1,16 @@
-[% INCLUDE html_header.tt2 %]
+<% INCLUDE html_header.tt2 %>
 <h1>Bugzilla Schema Documentation</h1>
 <div>
-<p>This service generates documentation for the database schema of <a href="[% project.url %]">[% project.name %]</a>, [% project.summary %]. It can produce documentation for the schema of any historical version or for the schema changes between any two versions.</p>
+<p>This service generates documentation for the database schema of <a href="<% project.url %>"><% project.name %></a>, <% project.summary %>. It can produce documentation for the schema of any historical version or for the schema changes between any two versions.</p>
 <table>
 <tr><td>
-<form action="/bugzilla/schema" method="get">
+<form action="/<% project.name FILTER lower %>/schema" method="get">
 <input name="action" value="single" type="hidden" />
 <fieldset><legend>Schema for a single version</legend>
 <select id="version" name="version">
-[% FOR version IN versions %]
-<option value="[% version %]"[% ' selected' IF version == current_version %]>[% version %]</option>
-[% END %]
+<% FOR version IN versions %>
+<option value="<% version %>"<% ' selected' IF version == current_version %>><% version %></option>
+<% END %>
 </select>
 <input name="view" value="View schema" type="submit" />
 </fieldset>
@@ -20,14 +20,14 @@
 <!-- form action="/range/" method="get">
 <fieldset><legend>Schema for a range of versions</legend>
 <select name="from">
-[% FOR version IN versions %]
-<option value="[% version %]">[% version %]</option>
-[% END %]
+<% FOR version IN versions %>
+<option value="<% version %>"><% version %></option>
+<% END %>
 </select>
 <select name="to">
-[% FOR version IN versions %]
-<option value="[% version %]">[% version %]</option>
-[% END %]
+<% FOR version IN versions %>
+<option value="<% version %>"><% version %></option>
+<% END %>
 </select>
 <input name="view" value="View schema" type="submit" />
 </fieldset>
@@ -42,4 +42,4 @@
 <p><small>This program is based upon one written by staff at <a href="http://www.ravenbrook.com/">Ravenbrook Limited</a>, as part of the <a href="http://www.ravenbrook.com/project/p4dti">P4DTI</a> project under contract to <a href="http://www.perforce.com">Perforce, Inc.</a> The source code and data for this service are open source and available at <a href="http://github.com/Ravenbrook/bugzilla-schema">GitHub</a>.</small></p>
 <p><small><strong>This document is provided by the copyright holders and contributors "as is" and any express or implied warranties, including, but not limited to, the implied warranties of merchantability and fitness for a particular purpose are disclaimed. In no event shall the copyright holders and contributors be liable for any direct, indirect, incidental, special, exemplary, or consequential damages (including, but not limited to, procurement of substitute goods or services; loss of use, data, or profits; or business interruption) however caused and on any theory of liability, whether in contract, strict liability, or tort (including negligence or otherwise) arising in any way out of the use of this document, even if advised of the possibility of such damage. </strong></small></p>
 
-[% INCLUDE html_footer.tt2 %]
+<% INCLUDE html_footer.tt2 %>

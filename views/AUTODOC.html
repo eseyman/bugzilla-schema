@@ -1,6 +1,6 @@
-[% INCLUDE html_header.tt2 %]
+<% INCLUDE html_header.tt2 %>
 
-<h1 class="text-center">Bugzilla Schema</h1>
+<h1 class="text-center"><% project.name %> Schema</h1>
 
 
 [% remainder = 4 - sources.size mod 4%]
@@ -30,15 +30,15 @@
 </div></div></div>
 
 <h2>1. Introduction</h2>
-<p>This document describes the Bugzilla database schema.</p>
+<p>This document describes the <% project.name %> database schema.</p>
 <p>This document is generated automatically by a Perl script which constructs and colors the schema tables from a DBIx::Class::Schema object.
-<p>The purpose of this document is to act as a reference for developers of Bugzilla and of code which interacts with Bugzilla
-<p>The intended readership is Bugzilla developers and administrators.
+<p>The purpose of this document is to act as a reference for developers of <% project.name %> and of code which interacts with <% project.name %>.
+<p>The intended readership is <% project.name %> developers and administrators.
 <p>This document is not confidential.
 <p>Please send any comments and/or problem reports to <a href="mailto:emmanuel+bzschema&#64;seyman.fr">emmanuel+bzschema&#64;seyman.fr</a>.
 
-<h2>2. Bugzilla overview</h2>
-<p>Bugzilla is a defect tracking system, written in Perl with a CGI web GUI. By default it uses MySQL to store its tables. PostgreSQL and SQLite are also supported.
+<h2>2. <% project.name %> overview</h2>
+<p><a href="<% project.url %>"><% project.name %></a> is <% project.summary %> licensed under the <% project.license %> license.
 
 <h2>3. The schema</h2>
 
@@ -58,10 +58,10 @@
 
 [% END %]
 
-<h2>4. Bugzilla History</h2>
-<h3>Bugzilla releases</h3>
+<h2>4. <% project.name %> History</h2>
+<h3><% project.name %> releases</h3>
 
-<p>A table giving the dates of all the Bugzilla releases since 2.0. will soon be generated.
+<p>A table giving the dates of all the <% project.name %> releases will soon be generated.
 
 
 <h2><a id="section-5">5. Example queries</a></h2>
@@ -109,4 +109,4 @@ select profiles.login_name, profiles.realname,
 select group_id from user_group_map where userid = <em>n</em> and isbless=0
 </code></blockquote>
 
-[% INCLUDE html_footer.tt2 %]
+<% INCLUDE html_footer.tt2 %>

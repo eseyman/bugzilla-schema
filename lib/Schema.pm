@@ -54,6 +54,8 @@ sub run {
             INCLUDE_PATH => 'views:var',
             INTERPOLATE  => 1,
             POST_CHOMP   => 1,
+            START_TAG    => quotemeta('<%'),
+            END_TAG      => quotemeta('%>'),
         };
 
         my $projects = projects();

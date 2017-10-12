@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Bugzilla Schema</title>
+    <title><% project.name %> Schema</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Schema">
@@ -20,4 +20,4 @@
     </script>
 </head>
 <body>
-[% IF include_tabs %][% INCLUDE html_tabs.tt2 %][% END %]
+<% IF include_tabs %><% INCLUDE html_tabs.tt2 %><% END %>
