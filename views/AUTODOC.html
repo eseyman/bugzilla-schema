@@ -3,7 +3,7 @@
 <h1 class="text-center"><% project.name %> Schema</h1>
 
 
-[% remainder = 4 - sources.size mod 4%]
+[% remainder = 4 - sources.size mod 4 %]
 [% IF remainder == 4 %]
 [% remainder = 0 %]
 [% END %]
@@ -19,7 +19,7 @@
 <div class="col-lg-2">&nbsp;</div>
 [% END %]
 [% END %]
-<div class="col-lg-2"><a href="#[% source.table %]">[% source.table%]</a></div>
+<div class="col-lg-2"><a href="#[% source.table %]">[% source.table %]</a></div>
 [% IF loop.index mod 4 == 3 %]
 <div class="col-lg-2">&nbsp;</div>
 [% END %]
