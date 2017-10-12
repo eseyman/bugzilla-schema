@@ -30,6 +30,16 @@ sub projects {
     return \%metadata;
 }
 
+sub module {
+    # Given a lowercase word, return the associated project (if it exists)
+    my $name = shift;
+    my $projects = projects();
+    if (exists($projects->{$name})) {
+        return $projects->{$name}{'name'};
+    }
+    return;
+}
+
 sub routes {
     return my @elements = grep {!/^$/} split '/', shift;
 }
@@ -67,7 +77,7 @@ sub run {
 
             my $project = lc($routes[0]);
 
-            my $module = 'Schema::' . ucfirst(lc($routes[0]));
+            my $module = 'Schema::' . module($routes[0]);
             eval("use $module;");
 
             if (exists($projects->{$project})) {
@@ -93,7 +103,7 @@ sub run {
         # be a project and the second an action.
         if (scalar @routes eq 2) {
 
-            my $module = 'Schema::' . ucfirst(lc($routes[0]));
+            my $module = 'Schema::' . module($routes[0]);
 
             # Let's get DBICx::AutoDoc to do its magic
             my %v2r = map { $_->{version} => $_->{schema} } @{ $module . '::releases' };
