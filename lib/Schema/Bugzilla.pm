@@ -225,6 +225,7 @@ our @releases = (
     { version => "4.4.10", schema => "4_4rc2", },
     { version => "4.4.11", schema => "4_4rc2", },
     { version => "4.4.12", schema => "4_4rc2", },
+    { version => "4.4.13", schema => "4_4rc2", },
     { version => "4.5.1", schema => "4_5_1", },
     { version => "4.5.2", schema => "4_5_2", },
     { version => "4.5.3", schema => "4_5_2", },
@@ -238,6 +239,7 @@ our @releases = (
     { version => "5.0.1", schema => "5_0rc1", },
     { version => "5.0.2", schema => "5_0rc1", },
     { version => "5.0.3", schema => "5_0rc1", },
+    { version => "5.0.4", schema => "5_0rc1", },
     { version => "5.1.1", schema => "5_1_1", },
 );
 
