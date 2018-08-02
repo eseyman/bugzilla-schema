@@ -241,7 +241,7 @@ our @releases = (
     { version => "5.0.3", schema => "5_0rc1", },
     { version => "5.0.4", schema => "5_0rc1", },
     { version => "5.1.1", schema => "5_1_1", },
-    { version => "5.1.2", schema => "5_1_2", },
+    { version => "5.1.2", schema => "5_1_1", },
 );
 
 sub list_versions() {
