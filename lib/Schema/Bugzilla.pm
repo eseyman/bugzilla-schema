@@ -240,6 +240,8 @@ our @releases = (
     { version => "5.0.2", schema => "5_0rc1", },
     { version => "5.0.3", schema => "5_0rc1", },
     { version => "5.0.4", schema => "5_0rc1", },
+    { version => "5.0.5", schema => "5_0_5", },
+    { version => "5.0.6", schema => "5_0_6", },
     { version => "5.1.1", schema => "5_1_1", },
     { version => "5.1.2", schema => "5_1_1", },
 );
